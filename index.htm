@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vodafone live! - Accueil</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/D0qMTNLj/pngwing-com.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: monospace;
+      background-color: #f8f8f8;
+      color: #000;
+    }
+    #splashScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #d60215;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #splashLogo {
+      width: 180px;
+      margin-bottom: 40px;
+    }
+    #loaderContainer {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      max-width: 300px;
+    }
+    #progressBar {
+      width: 100%;
+      height: 15px;
+      background-color: #fff;
+      border: 2px solid #000;
+      position: relative;
+    }
+    #progress {
+      height: 100%;
+      width: 0%;
+      background-color: #000;
+      transition: width 0.4s ease;
+    }
+    #progressText {
+      margin-top: 10px;
+      font-size: 0.8em;
+      text-align: center;
+      color: #fff;
+    }
+    #endImage {
+      margin-top: 15px;
+      display: none;
+    }
+    .header {
+      background-color: #cc2229;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .header img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+    .menu {
+      display: flex;
+      gap: 5px;
+    }
+    .menu button {
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+    .menu button.white {
+      background-color: #fff;
+      color: #000;
+    }
+    .menu button.gray {
+      background-color: #ccc;
+      color: #000;
+    }
+    .menu button.yellow {
+      background-color: #ffeb3b;
+      color: #000;
+    }
+    .content {
+      padding: 15px;
+      display: none;
+    }
+    #homeContent, #mailContent {
+      display: none;
+    }
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background: #fff;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .service a {
+      display: inline-block;
+      background: #eee;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      color: #000;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="splashScreen">
+    <img id="splashLogo" src="https://i.postimg.cc/bwTHhhMS/Design_sans_titre.png" alt="Logo Vodafone">
+    <div id="loaderContainer">
+      <div id="progressBar">
+        <div id="progress"></div>
+      </div>
+      <div id="progressText">Initialisation...</div>
+      <img id="endImage" src="https://i.postimg.cc/zDWFf6SP/loader.gif" alt="Chargement terminé" width="40">
+    </div>
+  </div>
+
+  <div class="header">
+    <img src="https://i.postimg.cc/kGL9Gzpx/vodafone-live.png" alt="Vodafone live!">
+    <div class="menu">
+      <button class="white" onclick="showSection('home')">Accueil</button>
+      <button class="gray" onclick="showSection('mail')">Mail</button>
+      <button class="yellow">Promo</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="homeContent">
+      <div class="card">
+        <h3>À la une</h3>
+        <div id="rssContainer">Chargement des actus...</div>
+      </div>
+      <h3>Services web</h3>
+      <div class="services">
+        <div class="service"><a href="https://www.spotify.com/" target="_blank">Spotify</a></div>
+        <div class="service"><a href="https://www.facebook.com/" target="_blank">Facebook</a></div>
+        <div class="service"><a href="https://www.amazon.fr/" target="_blank">Amazon</a></div>
+        <div class="service"><a href="https://www.instagram.com/" target="_blank">Instagram</a></div>
+        <div class="service"><a href="https://www.youtube.com/" target="_blank">YouTube</a></div>
+        <div class="service"><a href="https://www.msn.com/" target="_blank">MSN</a></div>
+        <div class="service"><a href="https://www.google.com/search?q=horoscope" target="_blank">Horoscope</a></div>
+        <div class="service"><a href="https://www.google.com/search?q=mec+sexy" target="_blank">Sexy</a></div>
+        <div class="service"><a href="https://www.purepeople.com/" target="_blank">PurePeople</a></div>
+        <div class="service"><a href="https://www.francetvinfo.fr/" target="_blank">France Info</a></div>
+      </div>
+    </div>
+
+    <div id="mailContent">
+      <div class="card">
+        <h3>Webmail</h3>
+        <ul>
+          <li><a href="https://www.sfr.fr/webmail" target="_blank">SFR Mail</a></li>
+          <li><a href="https://mail.aol.com" target="_blank">AOL Mail</a></li>
+          <li><a href="https://webmail.disroot.org/" target="_blank">AET Mail</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.getElementById("homeContent").style.display = section === 'home' ? 'block' : 'none';
+      document.getElementById("mailContent").style.display = section === 'mail' ? 'block' : 'none';
+    }
+
+    showSection('home');
+
+    async function fetchRSS() {
+      try {
+        const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://escargot4.wordpress.com/feed/");
+        const data = await response.json();
+        const container = document.getElementById("rssContainer");
+        container.innerHTML = "";
+        data.items.slice(0, 3).forEach(item => {
+          const el = document.createElement("div");
+          el.innerHTML = `<strong>${item.title}</strong><br><small>${item.pubDate}</small><br>`;
+          container.appendChild(el);
+        });
+      } catch (error) {
+        document.getElementById("rssContainer").textContent = "Erreur de chargement.";
+      }
+    }
+
+    fetchRSS();
+
+    const loaderContainer = document.getElementById("loaderContainer");
+    const progress = document.getElementById("progress");
+    const progressText = document.getElementById("progressText");
+    const endImage = document.getElementById("endImage");
+    const splash = document.getElementById("splashScreen");
+    const content = document.querySelector(".content");
+
+    const steps = [
+      { time: 0, text: "Initialisation..." },
+      { time: 10, text: "Chargement des images..." },
+      { time: 20, text: "Chargement des flux RSS..." }
+    ];
+
+    setTimeout(() => {
+      loaderContainer.style.display = "flex";
+      let elapsed = 0;
+      const duration = 30000;
+      const interval = setInterval(() => {
+        elapsed += 500;
+        const percent = Math.min((elapsed / duration) * 100, 100);
+        progress.style.width = percent + "%";
+
+        steps.forEach(step => {
+          if (elapsed >= step.time * 1000 && elapsed < (step.time + 5) * 1000) {
+            progressText.textContent = step.text;
+          }
+        });
+
+        if (elapsed >= duration) {
+          clearInterval(interval);
+          progressText.textContent = "Terminé";
+          endImage.style.display = "block";
+          setTimeout(() => {
+            splash.style.display = "none";
+            content.style.display = "block";
+          }, 1000);
+        }
+      }, 500);
+    }, 54000);
+  </script>
+</body>
+</html>
