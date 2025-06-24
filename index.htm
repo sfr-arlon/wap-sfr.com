@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mobitel live!</title>
   <style>
-    /* Fond blanc et texte noir */
     body {
       background: #fff;
       color: #000;
@@ -16,7 +15,6 @@
       line-height: 1.4em;
     }
 
-    /* Barre rouge pour titres */
     .barre-rouge {
       background: #c00;
       color: #fff;
@@ -28,7 +26,6 @@
       border-radius: 2px;
     }
 
-    /* Ligne mail (en haut) */
     .mail-ligne {
       display: flex;
       align-items: center;
@@ -47,13 +44,11 @@
       font-size: 16px;
     }
 
-    /* Contenu des sections */
     .section {
       margin-top: 6px;
       margin-bottom: 14px;
     }
 
-    /* Liens */
     a {
       color: #c00;
       text-decoration: none;
@@ -67,7 +62,6 @@
       text-decoration: underline;
     }
 
-    /* Colonnes pour service web - max 3 colonnes sur mobile, empilées */
     .colonnes {
       display: flex;
       flex-wrap: wrap;
@@ -101,6 +95,15 @@
     <span>mail</span>
   </div>
 
+  <!-- BARRE DE RECHERCHE GOOGLE -->
+  <div class="barre-rouge">Recherche</div>
+  <div class="section">
+    <form action="https://www.google.com/search" method="get" target="_blank">
+      <input type="text" name="q" placeholder="Rechercher sur Google" style="width: 100%; padding: 4px; font-size: 14px;"/>
+      <input type="submit" value="OK" style="margin-top: 4px; padding: 4px 8px; font-size: 14px; background:#c00; color:#fff; border:none; border-radius:2px;"/>
+    </form>
+  </div>
+
   <!-- ACTU -->
   <div class="barre-rouge">Actu</div>
   <div class="section" id="rss-feed">Chargement des actualités...</div>
@@ -110,7 +113,6 @@
   <div class="colonnes" id="web-links"></div>
 
   <script>
-    // Charger flux RSS actu
     function chargerRSS() {
       fetch('https://api.rss2json.com/v1/api.json?rss_url=https://escargot4.wordpress.com/feed/')
         .then(res => res.json())
@@ -130,7 +132,6 @@
         });
     }
 
-    // Afficher page mail (remplace le contenu)
     function afficherMail() {
       document.querySelector('.barre-rouge').textContent = 'Service mail';
       document.getElementById('rss-feed').innerHTML = `
@@ -138,23 +139,20 @@
         <a href="https://webmail.sfr.fr/" target="_blank">SFR Mail</a>
         <a href="https://mail.aol.com/" target="_blank">AOL Mail</a>
         <a href="https://webmail.disroot.org/" target="_blank">Flashmail</a>
+        <a href="https://mail.google.com/" target="_blank">Gmail</a>
       `;
-      // Cacher service web pendant mail
       document.getElementById('web-links').style.display = 'none';
-      document.querySelectorAll('.barre-rouge')[1].style.display = 'none'; // cache "Service web" titre
+      document.querySelectorAll('.barre-rouge')[2].style.display = 'none';
     }
 
-    // Retour à la page d'accueil
     function retourAccueil() {
       document.querySelector('.barre-rouge').textContent = 'Mobitel live!';
       document.getElementById('rss-feed').innerHTML = 'Chargement des actualités...';
       chargerRSS();
-      // Réafficher service web
       document.getElementById('web-links').style.display = 'flex';
-      document.querySelectorAll('.barre-rouge')[1].style.display = 'block'; 
+      document.querySelectorAll('.barre-rouge')[2].style.display = 'block';
     }
 
-    // Afficher les liens service web en colonnes simples (max 3)
     function afficherWebLinks() {
       const sites = [
         { nom: "BitView", url: "https://www.bitview.net/m/" },
@@ -198,7 +196,6 @@
       });
     }
 
-    // Initialisation
     chargerRSS();
     afficherWebLinks();
   </script>
