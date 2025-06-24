@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mobitel live!</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.postimg.cc/D0qMTNLj/pngwing-com.png" type="image/png" />
+
   <style>
     body {
       background: #fff;
@@ -82,6 +86,25 @@
         flex-basis: 100%;
       }
     }
+
+    .google-search {
+      margin: 12px 0;
+    }
+
+    .google-search input[type="text"] {
+      width: 80%;
+      padding: 4px;
+      font-size: 14px;
+    }
+
+    .google-search input[type="submit"] {
+      padding: 4px 8px;
+      font-size: 14px;
+      background-color: #c00;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -96,11 +119,10 @@
   </div>
 
   <!-- BARRE DE RECHERCHE GOOGLE -->
-  <div class="barre-rouge">Recherche</div>
-  <div class="section">
+  <div class="google-search">
     <form action="https://www.google.com/search" method="get" target="_blank">
-      <input type="text" name="q" placeholder="Rechercher sur Google" style="width: 100%; padding: 4px; font-size: 14px;"/>
-      <input type="submit" value="OK" style="margin-top: 4px; padding: 4px 8px; font-size: 14px; background:#c00; color:#fff; border:none; border-radius:2px;"/>
+      <input type="text" name="q" placeholder="Recherche Google..." />
+      <input type="submit" value="OK" />
     </form>
   </div>
 
@@ -142,7 +164,7 @@
         <a href="https://mail.google.com/" target="_blank">Gmail</a>
       `;
       document.getElementById('web-links').style.display = 'none';
-      document.querySelectorAll('.barre-rouge')[2].style.display = 'none';
+      document.querySelectorAll('.barre-rouge')[1].style.display = 'none';
     }
 
     function retourAccueil() {
@@ -150,7 +172,7 @@
       document.getElementById('rss-feed').innerHTML = 'Chargement des actualités...';
       chargerRSS();
       document.getElementById('web-links').style.display = 'flex';
-      document.querySelectorAll('.barre-rouge')[2].style.display = 'block';
+      document.querySelectorAll('.barre-rouge')[1].style.display = 'block';
     }
 
     function afficherWebLinks() {
